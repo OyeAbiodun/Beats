@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Admins - BEATZ APP</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container mt-3">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div id="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <div class="background-slider">
+        <div class="slide active" style="background-image: url('{{ url_for('static', filename='images/beats (1).jpg') }}');"></div>
+        <div class="slide" style="background-image: url('{{ url_for('static', filename='images/beats (2).jpg') }}');"></div>
+        <div class="slide" style="background-image: url('{{ url_for('static', filename='images/beats (3).jpg') }}');"></div>
+        <div class="slide" style="background-image: url('{{ url_for('static', filename='images/beats (4).jpg') }}');"></div>
+    </div>
+
+    <div class="admin-dashboard-container">
+        <h2>Manage Admin Profiles</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Admin ID</th>
+                    <th>First Name</th>
+                    <th>Surname</th>
+                    <th>Email</th>
+                    <th>Created At</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for admin in admins %}
+                <tr>
+                    <td>{{ admin.admin_id }}</td>
+                    <td>{{ admin.first_name }}</td>
+                    <td>{{ admin.surname }}</td>
+                    <td>{{ admin.email }}</td>
+                    <td>{{ admin.created_at }}</td>
+                    <td>
+                        <a href="{{ url_for('edit_admin', admin_id=admin.admin_id) }}" class="btn btn-primary btn-sm">Edit</a>
+                        <a href="{{ url_for('delete_admin', admin_id=admin.admin_id) }}" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="navigation-links">
+            <a href="{{ url_for('admin_dashboard') }}" class="btn-back">Back to Dashboard</a>
+        </div>
+    </div>
+
+    <script>
+        // Automatically hide flash messages after a few seconds
+        setTimeout(function() {
+            const flashMessages = document.getElementById('flash-messages');
+            if (flashMessages) {
+                flashMessages.style.display = 'none';
+            }
+        }, 3000); // Adjust time as needed
+    </script>
+</body>
+</html>

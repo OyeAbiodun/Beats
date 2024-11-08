@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - BEATS APP</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</head>
+<body>
+    <div class="container mt-3">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <div class="background-slider">
+        <div class="slide active" style="background-image: url('{{ url_for('static', filename='images/beats (1).jpg') }}');"></div>
+        <div class="slide" style="background-image: url('{{ url_for('static', filename='images/beats (2).jpg') }}');"></div>
+        <div class="slide" style="background-image: url('{{ url_for('static', filename='images/beats (3).jpg') }}');"></div>
+        <div class="slide" style="background-image: url('{{ url_for('static', filename='images/beats (4).jpg') }}');"></div>
+    </div>
+
+    <div class="login-container">
+        <h2>Login to BEATZ APP</h2>
+
+        <!-- Login Form -->
+        <form action="/login" method="post">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required placeholder="Enter your email">
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required placeholder="Enter your password">
+
+            <!-- Forgot Password Link -->
+            <div style="text-align: right; margin-bottom: 10px;">
+                <a href="{{ url_for('forgot_password') }}" class="forgot-password-link">Forgot Password?</a>
+            </div>
+
+            <button type="submit" class="btn-login">Login</button>
+        </form>
+
+        <div class="navigation-links">
+            <!-- Back to Welcome and Sign Up Links -->
+            <a href="{{ url_for('welcome') }}" class="btn-back">Back to Welcome</a>
+            <a href="{{ url_for('register') }}" class="btn-back">Sign Up</a>
+        </div>
+    </div>
+</body>
+</html>

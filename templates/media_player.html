@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard - BEATZ APP</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/media_player.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+    <script src="https://cdn.plyr.io/3.6.8/plyr.polyfilled.js"></script>
+</head>
+<body>
+    <div class="background-slider">
+        <div class="slide active" style="background-image: url('{{ url_for('static', filename='images/beats (1).jpg') }}');"></div>
+        <div class="slide" style="background-image: url('{{ url_for('static', filename='images/beats (2).jpg') }}');"></div>
+        <div class="slide" style="background-image: url('{{ url_for('static', filename='images/beats (3).jpg') }}');"></div>
+        <div class="slide" style="background-image: url('{{ url_for('static', filename='images/beats (4).jpg') }}');"></div>
+    </div>
+
+    <div class="container mt-3">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <div class="dashboard-container">
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search for beats or playlists..." aria-label="Search" class="form-control">
+            <button class="btn btn-primary" onclick="searchBeats()" aria-label="Search Beats">Search</button>
+        </div>
+
+        <div class="media-player">
+            <div class="track-info">
+                <img id="albumCover" src="{{ url_for('static', filename='images/default-cover.jpg') }}" alt="Album Cover" class="img-fluid">
+                <div class="track-details">
+                    <h3 id="trackTitle">Track Title</h3>
+                    <p id="trackArtist">Artist Name</p>
+                </div>
+            </div>
+            <audio id="audioPlayer" controls crossorigin>
+                <source id="audioSource" src="path_to_your_audio_file.mp3" type="audio/mp3" />
+            </audio>
+            <div class="controls">
+                <button class="btn btn-light" onclick="prevTrack()" aria-label="Previous Track"><i class="fas fa-backward"></i></button>
+                <button class="btn btn-success" onclick="togglePlay()" aria-label="Play/Pause Track"><i class="fas fa-play" id="playButton"></i></button>
+                <button class="btn btn-light" onclick="nextTrack()" aria-label="Next Track"><i class="fas fa-forward"></i></button>
+                <button class="btn btn-light" onclick="toggleShuffle()" aria-label="Shuffle Tracks"><i class="fas fa-random"></i></button>
+                <button class="btn btn-light" onclick="toggleRepeat()" aria-label="Repeat Track"><i class="fas fa-redo"></i></button>
+            </div>
+            <div class="progress-bar">
+                <input type="range" id="progress" value="0" aria-label="Track Progress" onchange="setTrackProgress(this.value)">
+                <div class="time-display">
+                    <span id="currentTime">0:00</span> / <span id="totalTime">0:00</span>
+                </div>
+            </div>
+            <div class="volume-control">
+                <label for="volume" aria-label="Volume Control">🔊</label>
+                <input type="range" id="volume" min="0" max="1" step="0.1" value="0.5" aria-label="Volume Level" onchange="setVolume(this.value)">
+            </div>
+        </div>
+
+        <div class="playlist-sidebar">
+            <h2>Your Playlists</h2>
+            <ul id="playlistList" class="list-group">
+                <!-- Dynamically populated with playlists -->
+            </ul>
+            <button class="btn btn-info" onclick="createPlaylist()" aria-label="Create Playlist">+ Create Playlist</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/media_player.js') }}"></script>
+</body>
+</html>

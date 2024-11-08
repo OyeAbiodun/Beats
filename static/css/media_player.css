@@ -1,0 +1,35 @@
+/* Flexbox layout for side-by-side arrangement */
+.dashboard-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 90%;
+    margin: auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* Transparent white overlay */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Style adjustments for playlist sidebar */
+.playlist-sidebar {
+    width: 20%; /* Set width for left sidebar */
+    margin-right: 20px;
+}
+
+/* Media player centered */
+.media-player {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Search bar styled as the right sidebar */
+.search-bar {
+    width: 20%; /* Set width for right sidebar */
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}

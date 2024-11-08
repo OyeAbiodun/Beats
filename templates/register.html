@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - BEATS APP</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</head>
+<body>
+    <div class="container mt-3">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <div class="background-slider">
+        <div class="slide active" style="background-image: url('{{ url_for('static', filename='images/beats (1).jpg') }}');"></div>
+        <div class="slide" style="background-image: url('{{ url_for('static', filename='images/beats (2).jpg') }}');"></div>
+        <div class="slide" style="background-image: url('{{ url_for('static', filename='images/beats (3).jpg') }}');"></div>
+        <div class="slide" style="background-image: url('{{ url_for('static', filename='images/beats (4).jpg') }}');"></div>
+    </div>
+
+    <div class="login-container">
+        <h2>Sign Up for BEATZ APP</h2>
+        <form id="registrationForm" action="/register" method="post">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" required placeholder="Enter your first name">
+
+            <label for="surname">Surname</label>
+            <input type="text" id="surname" name="surname" required placeholder="Enter your surname">
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="Enter your email">
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required placeholder="Enter your password">
+
+            <label for="phoneNo">Phone No</label>
+            <input type="tel" id="phoneNo" name="phoneNo" required placeholder="Enter your phone number">
+
+            <label for="country">Country</label>
+            <select id="country" name="country" required>
+                <option value="">Select Country</option>
+            </select>
+
+            <label for="state">State</label>
+            <select id="state" name="state" required>
+                <option value="">Select State</option>
+            </select>
+
+            <label for="city">City</label>
+            <select id="city" name="city" required>
+                <option value="">Select City</option>
+            </select>
+
+            <label for="address">Address</label>
+            <input type="text" id="address" name="address" required placeholder="Enter your address">
+
+            <label for="zipCode">ZIP Code</label>
+            <input type="text" id="zipCode" name="zipCode" required placeholder="Enter your ZIP code">
+
+            <button type="submit" class="btn-login">Register</button>
+        </form>
+
+        <div class="navigation-links">
+            <a href="{{ url_for('login') }}" class="btn-back">Back to Login</a>
+            <a href="{{ url_for('welcome') }}" class="btn-exit">Exit</a>
+        </div>
+    </div>
+</body>
+</html>

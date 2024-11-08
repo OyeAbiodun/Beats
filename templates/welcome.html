@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to BEATS APP</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</head>
+<body>
+    <!-- Background Slider -->
+    <div class="background-slider">
+        <div class="slide active" style="background-image: url('{{ url_for('static', filename='images/beats (1).jpg') }}');"></div>
+        <div class="slide" style="background-image: url('{{ url_for('static', filename='images/beats (2).jpg') }}');"></div>
+        <div class="slide" style="background-image: url('{{ url_for('static', filename='images/beats (3).jpg') }}');"></div>
+        <div class="slide" style="background-image: url('{{ url_for('static', filename='images/beats (4).jpg') }}');"></div>
+    </div>
+
+    <!-- Welcome Content -->
+    <div class="welcome-container">
+        <h1>Welcome to <span class="highlight">BEATZ APP</span></h1>
+        <p>Your ultimate music experience starts here. Discover beats, create playlists, and explore music like never before!</p>
+
+        <!-- Mini Beats Preview -->
+        <button onclick="playPreview()" class="btn-play">Play Mini Beats</button>
+
+        <!-- Login Button -->
+        <a href="{{ url_for('login') }}" class="btn-login">Login</a>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Admin - BEATZ APP</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container mt-3">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div id="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <div class="background-slider">
+        <div class="slide active" style="background-image: url('{{ url_for('static', filename='images/beats (1).jpg') }}');"></div>
+        <div class="slide" style="background-image: url('{{ url_for('static', filename='images/beats (2).jpg') }}');"></div>
+        <div class="slide" style="background-image: url('{{ url_for('static', filename='images/beats (3).jpg') }}');"></div>
+        <div class="slide" style="background-image: url('{{ url_for('static', filename='images/beats (4).jpg') }}');"></div>
+    </div>
+
+    <div class="login-container">
+        <h2>Create New Admin</h2>
+        <form action="{{ url_for('admin_dashboard.create_admin') }}" method="post">
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" name="firstName" required placeholder="Enter first name">
+
+        <label for="surname">Surname</label>
+        <input type="text" id="surname" name="surname" required placeholder="Enter surname">
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required placeholder="Enter email">
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required placeholder="Enter password">
+
+        <button type="submit" class="btn-login">Create Admin</button>
+    </form>
+
+
+        <div class="navigation-links">
+            <a href="{{ url_for('admin_dashboard.index') }}" class="btn-back">Back to Dashboard</a>
+        </div>
+    </div>
+
+    <script>
+        // Automatically hide flash messages after a few seconds
+        setTimeout(function() {
+            const flashMessages = document.getElementById('flash-messages');
+            if (flashMessages) {
+                flashMessages.style.display = 'none';
+            }
+        }, 3000); // Adjust time as needed
+    </script>
+</body>
+</html>

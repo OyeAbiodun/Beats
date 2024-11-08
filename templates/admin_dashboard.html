@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - BEATZ APP</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin_style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/admin_script.js') }}"></script>
+</head>
+<body>
+    <div class="container mt-3">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div id="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <div class="background-slider">
+        <div class="slide active" style="background-image: url('{{ url_for('static', filename='images/beats (1).jpg') }}');"></div>
+        <div class="slide" style="background-image: url('{{ url_for('static', filename='images/beats (2).jpg') }}');"></div>
+        <div class="slide" style="background-image: url('{{ url_for('static', filename='images/beats (3).jpg') }}');"></div>
+        <div class="slide" style="background-image: url('{{ url_for('static', filename='images/beats (4).jpg') }}');"></div>
+    </div>
+
+    <div class="admin-dashboard-container">
+        <h2>Admin Dashboard</h2>
+        <nav class="admin-nav">
+            <a href="{{ url_for('admin_dashboard.view_users') }}">View Users</a>
+            <a href="{{ url_for('admin_dashboard.create_admin') }}">Create Admin</a>
+            <a href="{{ url_for('admin_dashboard.manage_admins') }}">Manage Admin Profiles</a>
+            <a href="{{ url_for('admin_dashboard.upload_beats') }}">Upload Beats</a>
+            <a href="{{ url_for('admin_dashboard.admin_media_player') }}">Media Player</a>
+            <a href="{{ url_for('admin_dashboard.user_statistics') }}">Statistics</a>
+            <a href="{{ url_for('admin_dashboard.download_data') }}">Download Data</a>
+            <a href="{{ url_for('admin_dashboard.logout') }}">Logout</a>
+        </nav>
+
+        <div id="admin-content">
+            <!-- Content for each admin feature will be loaded here -->
+        </div>
+    </div>
+
+    <script>
+        // Automatically hide flash messages after a few seconds
+        setTimeout(function() {
+            const flashMessages = document.getElementById('flash-messages');
+            if (flashMessages) {
+                flashMessages.style.display = 'none';
+            }
+        }, 3000); // Adjust time as needed
+    </script>
+</body>
+</html>
