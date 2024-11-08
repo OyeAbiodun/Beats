@@ -1,11 +1,16 @@
- {
+{
     "version": 2,
     "builds": [
-        "src": "beatz.py", "use": "@vercel/python"
+      {
+        "src": "beatz.py",
+        "use": "@vercel/python"
+      }
     ],
     "routes": [
-        {
-            "src":"/(.*)", "dest": "beatz.py"
-        }
+      {
+        "src": "/(.*)",
+        "dest": "beatz.py"
+      }
     ]
- }
+  }
+  
