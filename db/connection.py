@@ -6,8 +6,8 @@ from werkzeug.security import generate_password_hash
 # Database configuration
 DB_NAME = "postgres"
 DB_USER = "postgres"  # Replace with your PostgreSQL username
-DB_PASSWORD = "@cndro25aackk"  # Replace with your PostgreSQL password
-DB_HOST = "100.119.29.70"
+DB_PASSWORD = "@Abiodun8."  # Replace with your PostgreSQL password
+DB_HOST = "localhost"
 DB_PORT = "5432"
 
 # Default admin credentials
