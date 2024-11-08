@@ -7,7 +7,8 @@ import os
 
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'
+app.secret_key = os.environ.get('FLASK_SECRET_KEY', 'default_key')
+DATABASE_URL = os.environ.get('DATABASE_URL')
 
 setup_database()
 
